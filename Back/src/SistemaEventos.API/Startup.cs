@@ -37,6 +37,7 @@ namespace SistemaEventos.API
             );
 
             services.AddControllers();
+            services.AddCors();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "SistemaEventos.API", Version = "v1" });
@@ -58,6 +59,11 @@ namespace SistemaEventos.API
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseCors(cors => cors.AllowAnyHeader()
+                                    .AllowAnyMethod()
+                                    .AllowAnyOrigin());      
+                                               
 
             app.UseEndpoints(endpoints =>
             {
